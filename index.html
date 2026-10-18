@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>AURA 首頁預覽</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;1,500&family=Michroma&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500&family=Shippori+Mincho:wght@500&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: one dark storefront; three style zones each carry their own palette and face, shared shopping chrome around them */
+:root{
+  color-scheme: dark;
+  --bg:#0B0B0B; --surface:#161616; --surface-2:#1C1C1C; --line:#2A2A2A;
+  --fg:#FFFFFF; --muted:#CCCCCC; --dim:#8A8A8A; --accent:#A855F7;
+  --y2k-bg:#0D0A12; --y2k-card:#1A1622; --silver:#E5E7EB; --silver-2:#C0C4CC;
+  --wa-bg:#F4F1EA; --wa-card:#E6E0D4; --wa-ink:#1A1A1A; --wa-muted:#4A4740;
+  --f-display:'Bodoni Moda','Noto Serif TC',Georgia,serif;
+  --f-tech:Michroma,'Noto Sans TC',sans-serif;
+  --f-mincho:'Shippori Mincho','Noto Serif TC',serif;
+  --f-body:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  --f-mono:'Space Mono',ui-monospace,Menlo,monospace;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1320px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+@media (min-width:720px){.wrap{padding-left:max(40px, env(safe-area-inset-left,0px));padding-right:max(40px, env(safe-area-inset-right,0px))}}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.28em;color:var(--muted);margin:0 0 10px}
+h1,h2,h3{text-wrap:balance}
+.ph{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.15em;color:var(--dim);text-align:center;padding:8px}
+
+.preview-note{background:var(--accent);color:#0B0B0B;font-size:13px;text-align:center;padding-block:8px;font-weight:700}
+.notice{background:var(--surface-2);color:var(--muted);font-size:13px;letter-spacing:.06em;text-align:center;padding-block:9px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-family:var(--f-tech);font-size:20px;letter-spacing:.35em;text-decoration:none}
+.nav{display:flex;gap:26px;font-size:14px;letter-spacing:.05em}
+.nav a{text-decoration:none;color:var(--muted)}.nav a:hover{color:var(--fg)}
+.icons{display:flex;align-items:center;gap:2px}
+.ibtn{width:44px;height:44px;border:0;background:none;color:var(--fg);display:flex;align-items:center;justify-content:center;position:relative}
+.cart-badge{position:absolute;top:5px;right:3px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:#0B0B0B;font:700 11px var(--f-mono);display:flex;align-items:center;justify-content:center;padding:0 4px}
+.menu-btn{display:none}
+@media (max-width:960px){.nav{display:none}.menu-btn{display:flex}}
+.mnav{display:none;flex-direction:column;border-top:1px solid var(--line);padding-block:8px}
+.mnav.open{display:flex}
+.mnav a{padding:12px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+
+.hero{padding-block:56px 32px}
+.hero-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:32px}
+.hero h1{margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(44px,8vw,92px);line-height:1}
+.hero h1 em{font-style:italic}
+.hero-top p{margin:0;max-width:360px;color:var(--muted);font-size:16px}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px}
+.panel{display:flex;flex-direction:column;min-height:500px;text-decoration:none;overflow:hidden;transition:transform .25s ease}
+.panel:hover{transform:translateY(-6px)}
+.panel .ph{flex:1;min-height:260px}
+.panel .txt{padding:24px}
+.panel h2{margin:0 0 8px;font-weight:500}
+.panel p{margin:0 0 18px}
+.p-dark{background:#141414;border:1px solid var(--line)}
+.p-dark .ph{background:var(--surface-2)}
+.p-dark h2{font-family:var(--f-display);font-size:32px}
+.p-dark p{color:var(--muted)}
+.p-dark .cta{border-bottom:1px solid var(--fg);padding-bottom:4px;font-size:14px;letter-spacing:.12em}
+.grid-bg{background-color:var(--y2k-bg);background-image:linear-gradient(rgba(168,85,247,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.12) 1px,transparent 1px);background-size:44px 44px}
+.p-y2k{border:1px solid var(--accent);color:var(--silver)}
+.p-y2k .ph{color:var(--silver-2);font-family:var(--f-mono)}
+.p-y2k .txt{background:rgba(13,10,18,.88)}
+.p-y2k .eyebrow{color:var(--accent)}
+.p-y2k h2{font-family:var(--f-tech);font-weight:400;font-size:24px}
+.p-y2k p{color:var(--silver-2)}
+.p-y2k .cta{font:700 13px var(--f-mono);letter-spacing:.12em;background:var(--accent);color:#0B0B0B;padding:8px 14px}
+.p-wa{background:var(--wa-bg);color:var(--wa-ink)}
+.p-wa .ph{background:var(--wa-card);color:#5E5A52;margin:18px 18px 0}
+.p-wa .eyebrow{color:#5E5A52}
+.p-wa h2{font-family:var(--f-mincho);font-size:30px}
+.p-wa p{color:var(--wa-muted)}
+.p-wa .cta{border-bottom:1px solid var(--wa-ink);padding-bottom:4px;font-size:14px;letter-spacing:.12em}
+
+.perks{border-block:1px solid var(--line)}
+.perks .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:20px;padding-block:24px}
+.perk{display:flex;gap:14px;align-items:center}
+.perk b{display:block}.perk span{color:var(--muted);font-size:13px}
+
+.section{padding-block:80px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;margin-bottom:26px}
+.sec-head h2{margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(32px,5vw,44px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{height:44px;padding:0 18px;border:1px solid #3A3A3A;background:transparent;color:var(--fg);font-size:14px}
+.chip[aria-pressed="true"]{background:var(--fg);color:#0B0B0B;border-color:var(--fg)}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:18px}
+@media (max-width:560px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.card{background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.card .img{position:relative;aspect-ratio:3/4;max-width:100%}
+.tag{position:absolute;top:10px;left:10px;padding:3px 9px;font:700 11px var(--f-mono);letter-spacing:.14em}
+.card .body{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card .cat{color:var(--muted);font-size:12px;letter-spacing:.1em}
+.card h3{margin:0;font-size:15px;font-weight:500}
+.price{font-family:var(--f-mono);font-size:14px}
+.card .acts{display:flex;gap:8px;margin-top:auto;padding-top:10px}
+.add{flex:1;height:44px;background:transparent;color:var(--fg);border:1px solid var(--fg);font-size:14px}
+.add:hover{background:var(--fg);color:#0B0B0B}
+.add.done{background:var(--fg);color:#0B0B0B}
+.fav{width:44px;height:44px;flex:none;background:transparent;color:var(--fg);border:1px solid #3A3A3A;display:flex;align-items:center;justify-content:center}
+.fav[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+@media (max-width:560px){.fav{display:none}.add{font-size:13px}}
+
+.zone-dark{border-top:1px solid var(--line)}
+.zone-dark .wrap{display:flex;flex-wrap:wrap;gap:44px;padding-block:88px}
+.zd-hero{flex:1 1 380px;min-width:0;min-height:520px;background:var(--surface-2);align-items:flex-end;justify-content:flex-start;padding:28px}
+.zd-main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.zd-main h2{margin:0 0 14px;font-family:var(--f-display);font-weight:500;font-size:clamp(44px,6vw,64px);line-height:1}
+.zd-main h2 em{font-style:italic}
+.zd-main p{margin:0;max-width:520px;color:var(--muted);font-size:16px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:18px}
+.mini{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini .img{aspect-ratio:3/4;max-width:100%}
+.mini h3{margin:0;font-size:15px;font-weight:500}
+.mini .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.link-btn{height:44px;padding:0 12px;background:none;border:0;border-bottom:1px solid currentColor;color:inherit;font-size:13px}
+.outline{align-self:flex-start;display:inline-block;border:1px solid var(--fg);padding:14px 26px;text-decoration:none;font-size:14px;letter-spacing:.14em}
+
+.zone-y2k{border-block:1px solid var(--accent)}
+.ticker{overflow:hidden;border-bottom:1px solid #3B2A55;background:var(--y2k-bg)}
+.ticker p{margin:0;padding-block:11px;white-space:nowrap;font:13px var(--f-mono);letter-spacing:.3em;color:var(--silver-2);animation:tick 30s linear infinite;width:max-content}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker p{animation:none}.panel{transition:none}}
+.zone-y2k .eyebrow{color:var(--accent)}
+.zone-y2k h2{margin:0;font-family:var(--f-tech);font-weight:400;font-size:clamp(30px,5vw,54px);color:var(--silver)}
+.zone-y2k .lead{margin:12px 0 0;max-width:520px;color:var(--silver-2);font-size:16px}
+.y-cta{font:700 13px var(--f-mono);letter-spacing:.14em;background:var(--accent);color:#0B0B0B;padding:14px 22px;text-decoration:none}
+.y-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:18px}
+@media (max-width:560px){.y-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.y-card{background:rgba(13,10,18,.92);border:1px solid #9CA3AF;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.y-meta{display:flex;justify-content:space-between;font:11px var(--f-mono);color:var(--silver-2);gap:6px}
+.y-meta span:last-child{color:var(--accent)}
+.y-card .img{aspect-ratio:1;max-width:100%;background:var(--y2k-card);border:1px dashed #4B3A66;color:var(--silver-2);font-family:var(--f-mono)}
+.y-card h3{margin:0;font-size:15px;font-weight:500;color:var(--silver)}
+.y-card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.y-card .price{color:var(--silver)}
+.y-add{height:44px;padding:0 12px;background:var(--silver);color:#0B0B0B;border:0;font:700 12px var(--f-mono)}
+
+.zone-wa{background:var(--wa-bg);color:var(--wa-ink)}
+.zone-wa .wrap{display:flex;flex-wrap:wrap;gap:56px;padding-block:110px}
+.wa-intro{flex:1 1 280px;min-width:0;display:flex;gap:28px}
+.vert{margin:0;writing-mode:vertical-rl;font-family:var(--f-mincho);font-size:22px;letter-spacing:.4em;color:#5E5A52}
+.zone-wa .eyebrow{color:#5E5A52}
+.zone-wa h2{margin:0 0 18px;font-family:var(--f-mincho);font-weight:500;font-size:clamp(34px,5vw,48px);line-height:1.3}
+.zone-wa .lead{margin:0 0 28px;color:var(--wa-muted);font-size:16px;line-height:1.9}
+.wa-link{border-bottom:1px solid var(--wa-ink);padding-bottom:6px;text-decoration:none;font-size:14px;letter-spacing:.14em}
+.wa-grid{flex:999 1 600px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:36px 26px}
+@media (max-width:560px){.wa-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}.vert{display:none}}
+.wa-card{display:flex;flex-direction:column;gap:10px;min-width:0}
+.wa-card .img{aspect-ratio:4/5;max-width:100%;background:var(--wa-card);color:#5E5A52}
+.wa-card h3{margin:0;font-family:var(--f-mincho);font-size:16px;font-weight:500}
+.wa-card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.wa-card .price{font-family:var(--f-body);color:var(--wa-muted)}
+.wa-add{height:44px;padding:0 16px;background:var(--wa-ink);color:var(--wa-bg);border:0;border-radius:22px;font-size:13px}
+
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:14px}
+@media (max-width:560px){.cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+.cat-tile{display:flex;flex-direction:column;justify-content:space-between;min-height:170px;padding:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none}
+@media (max-width:560px){.cat-tile{min-height:96px;padding:12px}}
+.cat-tile small{font:11px var(--f-mono);letter-spacing:.18em;color:var(--muted)}
+.cat-tile b{font-size:17px;font-weight:500}
+.cat-tile:hover{border-color:var(--accent)}
+
+.story{border-top:1px solid var(--line);text-align:center}
+.story .wrap{padding-block:110px}
+.story .eyebrow{color:var(--accent)}
+.story h2{margin:0 0 18px;font-family:var(--f-display);font-weight:500;font-size:clamp(30px,5vw,56px);line-height:1.1}
+.story p{margin:0 auto 30px;max-width:560px;color:var(--muted);font-size:16px}
+
+.join{background:var(--surface-2)}
+.join .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px;padding-block:56px}
+.join h2{margin:0 0 6px;font-size:26px}
+.join p{margin:0;color:var(--muted)}
+.join form{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:6px;flex:1 1 260px}
+.field label{font-size:13px;color:var(--muted)}
+.field input{height:48px;padding:0 14px;background:var(--bg);border:1px solid #3A3A3A;color:var(--fg);font:inherit;width:100%}
+.join button{height:48px;padding:0 28px;background:var(--accent);color:#0B0B0B;border:0;font-weight:700}
+.form-msg{flex-basis:100%;margin:0;font-size:13px;color:var(--muted);min-height:20px}
+
+footer{border-top:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:28px;padding-block:56px 32px}
+.fgrid h3{margin:0 0 12px;font-size:14px;letter-spacing:.1em}
+.fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.fgrid ul a{color:var(--muted);text-decoration:none}.fgrid ul a:hover{color:var(--fg)}
+.copy{border-top:1px solid var(--line);padding-block:18px 32px;color:#A3A3A3;font-size:12px;letter-spacing:.1em}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--fg);color:#0B0B0B;padding:12px 20px;font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:40;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<div class="preview-note">設計預覽 · 商品名稱與圖片為示意，價格待填</div>
+<div class="notice">全館滿 NT$ [金額] 免運 · 超商取貨 / 宅配 · 新會員首購 [折扣]</div>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" id="top">AURA</a>
+      <nav class="nav" aria-label="主選單">
+        <a href="#new">新品上架</a><a href="#categories">全部商品</a><a href="#dark">暗黑精品</a><a href="#y2k">Y2K 賽博</a><a href="#minimal">日系簡約</a><a href="#story">品牌故事</a>
+      </nav>
+      <div class="icons">
+        <button class="ibtn" aria-label="搜尋"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+        <button class="ibtn" aria-label="會員中心"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></button>
+        <button class="ibtn" id="cartBtn" aria-label="購物車，0 件商品"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-badge" id="cartCount">0</span></button>
+        <button class="ibtn menu-btn" id="menuBtn" aria-label="開啟選單" aria-expanded="false" aria-controls="mnav"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+      </div>
+    </div>
+    <nav class="mnav" id="mnav" aria-label="手機選單">
+      <a href="#new">新品上架</a><a href="#categories">全部商品</a><a href="#dark">暗黑精品</a><a href="#y2k">Y2K 賽博</a><a href="#minimal">日系簡約</a><a href="#story">品牌故事</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero wrap">
+  <div class="hero-top">
+    <div>
+      <p class="eyebrow">AURA / ONE STORE · THREE WORLDS</p>
+      <h1>Beyond the <em>Ordinary</em></h1>
+    </div>
+    <p>一個網站，三種風格。從暗黑精品、Y2K 賽博到日系簡約，選一個屬於你的世界。</p>
+  </div>
+  <div class="panels">
+    <a class="panel p-dark" href="#dark">
+      <div class="ph">[ 黑白模特兒形象照 ]</div>
+      <div class="txt"><p class="eyebrow">DARK LUXE</p><h2>暗黑精品</h2><p>黑白極簡、俐落剪裁，低調的高級感。</p><span class="cta">進入專區 →</span></div>
+    </a>
+    <a class="panel p-y2k grid-bg" href="#y2k">
+      <div class="ph">[ 金屬銀造型照 ]</div>
+      <div class="txt"><p class="eyebrow">Y2K://CYBER</p><h2>Y2K 賽博街頭</h2><p>金屬銀、霓虹紫，千禧年的未來感。</p><span class="cta">ENTER_ZONE →</span></div>
+    </a>
+    <a class="panel p-wa" href="#minimal">
+      <div class="ph">[ 自然光選物照 ]</div>
+      <div class="txt"><p class="eyebrow">和 MINIMAL</p><h2>日系簡約選物</h2><p>留白、自然材質，讓衣服自己說話。</p><span class="cta">進入專區 →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="perks" aria-label="購物保障">
+  <div class="wrap">
+    <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><div><b>超商取貨 · 宅配</b><span>7-11 / 全家 / 宅配到府</span></div></div>
+    <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>多元付款</b><span>信用卡 / LINE Pay / 超商代碼</span></div></div>
+    <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg><div><b>7 天鑑賞期</b><span>退換貨流程清楚透明</span></div></div>
+    <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 16.6 6.7 19.5l1.1-6L3.4 9.3l6-.8z"/></svg><div><b>會員點數回饋</b><span>消費累積 · 生日禮遇</span></div></div>
+  </div>
+</section>
+
+<section id="new" class="section wrap">
+  <div class="sec-head">
+    <div><p class="eyebrow">NEW ARRIVALS</p><h2>新品上架</h2></div>
+    <div class="chips" role="group" aria-label="依分類篩選" id="chips"></div>
+  </div>
+  <div class="products" id="newGrid"></div>
+</section>
+
+<section id="dark" class="zone-dark">
+  <div class="wrap">
+    <div class="ph zd-hero">[ 暗黑精品 季節形象大圖 ]</div>
+    <div class="zd-main">
+      <div>
+        <p class="eyebrow">DARK LUXE 專區</p>
+        <h2>Quiet <em>Power</em></h2>
+        <p>黑、白、灰三色為主，強調剪裁與材質，適合想要低調卻有存在感的你。</p>
+      </div>
+      <div class="mini-grid" id="darkGrid"></div>
+      <a class="outline" href="#dark">逛暗黑精品專區 →</a>
+    </div>
+  </div>
+</section>
+
+<section id="y2k" class="zone-y2k grid-bg">
+  <div class="ticker" aria-hidden="true"><p>NEW DROP // Y2K://CYBER // 限量發售 // METALLIC SERIES // NEW DROP // Y2K://CYBER // 限量發售 // METALLIC SERIES // NEW DROP // Y2K://CYBER // 限量發售 // METALLIC SERIES // NEW DROP // Y2K://CYBER // 限量發售 // METALLIC SERIES // </p></div>
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><p class="eyebrow">SYS.LOADED — Y2K 專區</p><h2>Y2K://CYBER</h2><p class="lead">金屬光澤、短版剪裁與科技感配件，搭配日文與數位視覺。</p></div>
+      <a class="y-cta" href="#y2k">ENTER_ZONE →</a>
+    </div>
+    <div class="y-grid" id="y2kGrid"></div>
+  </div>
+</section>
+
+<section id="minimal" class="zone-wa">
+  <div class="wrap">
+    <div class="wa-intro">
+      <p class="vert">日常の余白</p>
+      <div>
+        <p class="eyebrow">和 MINIMAL 專區</p>
+        <h2>簡單，<br>才耐看。</h2>
+        <p class="lead">亞麻、棉麻、羊毛等自然材質，大地色調與寬鬆版型，適合每天穿。</p>
+        <a class="wa-link" href="#minimal">看全部選物 →</a>
+      </div>
+    </div>
+    <div class="wa-grid" id="waGrid"></div>
+  </div>
+</section>
+
+<section id="categories" class="section wrap">
+  <p class="eyebrow">SHOP BY CATEGORY</p>
+  <div class="sec-head"><h2>全部分類</h2></div>
+  <div class="cats" id="cats"></div>
+</section>
+
+<section id="story" class="story">
+  <div class="wrap">
+    <p class="eyebrow">THE AURA WORLD</p>
+    <h2>Individuality / Rebellion / Street Culture</h2>
+    <p>[ 品牌故事：AURA 的起點、理念，以及為什麼同時擁抱三種風格。 ]</p>
+    <a class="outline" href="#story">認識 AURA →</a>
+  </div>
+</section>
+
+<section class="join" aria-label="加入會員">
+  <div class="wrap">
+    <div><h2>加入 AURA 會員</h2><p>搶先收到新品與限量發售通知，首購享 [折扣]。</p></div>
+    <form id="joinForm" novalidate>
+      <div class="field"><label for="email">電子郵件</label><input id="email" type="email" placeholder="you@example.com" autocomplete="email"></div>
+      <button type="submit">訂閱</button>
+      <p class="form-msg" id="formMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><div class="logo" style="display:block;margin-bottom:10px">AURA</div><p style="margin:0;color:var(--muted);font-size:14px">暗黑精品 × Y2K 賽博 × 日系簡約</p></div>
+      <div><h3>購物須知</h3><ul><li><a href="#top">配送方式</a></li><li><a href="#top">付款方式</a></li><li><a href="#top">退換貨政策</a></li><li><a href="#top">尺寸指南</a></li></ul></div>
+      <div><h3>會員中心</h3><ul><li><a href="#top">登入 / 註冊</a></li><li><a href="#top">訂單查詢</a></li><li><a href="#top">收件資料</a></li><li><a href="#top">收藏清單</a></li></ul></div>
+      <div><h3>關於 AURA</h3><ul><li><a href="#story">品牌故事</a></li><li><a href="#top">Instagram</a></li><li><a href="#top">聯絡我們</a></li></ul></div>
+    </div>
+    <div class="copy">© AURA STREETWEAR</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var cart = 0, added = {}, filter = '全部';
+  var heart = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>';
+  var STYLE = {
+    DARK:{img:'#1C1C1C',fg:'#8A8A8A',tag:'background:#FFFFFF;color:#0B0B0B'},
+    Y2K:{img:'#1A1622',fg:'#C0C4CC',tag:'background:#A855F7;color:#0B0B0B'},
+    '和':{img:'#E6E0D4',fg:'#5E5A52',tag:'background:#1A1A1A;color:#F4F1EA'}
+  };
+  var NEW = [
+    {id:'n1',name:'重磅落肩 Logo T-shirt',cat:'上衣',s:'DARK'},
+    {id:'n2',name:'金屬感短版夾克',cat:'外套',s:'Y2K'},
+    {id:'n3',name:'亞麻寬版襯衫',cat:'上衣',s:'和'},
+    {id:'n4',name:'工裝多口袋長褲',cat:'下身',s:'DARK'},
+    {id:'n5',name:'銀色漆面斜背包',cat:'配件',s:'Y2K'},
+    {id:'n6',name:'棉麻九分寬褲',cat:'下身',s:'和'},
+    {id:'n7',name:'立領羊毛大衣',cat:'外套',s:'DARK'},
+    {id:'n8',name:'帆布托特包',cat:'配件',s:'和'}
+  ];
+  var DARK = [{id:'d1',name:'極簡剪裁西裝外套'},{id:'d2',name:'絲光棉黑色襯衫'},{id:'d3',name:'皮革切爾西靴'}];
+  var Y2K = [{id:'y1',code:'001',name:'鏡面銀短版背心'},{id:'y2',code:'002',name:'紫色鏡片墨鏡'},{id:'y3',code:'003',name:'尼龍降落傘長褲'},{id:'y4',code:'004',name:'金屬扣厚底鞋'}];
+  var WA = [{id:'m1',name:'羊毛混紡針織衫'},{id:'m2',name:'燕麥色寬版長褲'},{id:'m3',name:'手作陶瓷馬克杯'}];
+  var CATS = [['TOPS','上衣'],['BOTTOMS','下身'],['OUTERWEAR','外套'],['SHOES','鞋履'],['BAGS & ACC.','包款配件'],['LIFESTYLE','生活選物']];
+  var names = {};
+  NEW.concat(DARK,Y2K,WA).forEach(function(p){names[p.id]=p.name;});
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function label(id){return added[id] ? '已加入 ✓' : '加入購物車';}
+
+  function renderNew(){
+    document.getElementById('chips').innerHTML = ['全部','上衣','下身','外套','配件'].map(function(c){
+      return '<button class="chip" data-chip="'+c+'" aria-pressed="'+(c===filter)+'">'+c+'</button>';
+    }).join('');
+    document.getElementById('newGrid').innerHTML = NEW.filter(function(p){return filter==='全部'||p.cat===filter;}).map(function(p){
+      var st = STYLE[p.s];
+      return '<article class="card"><div class="img ph" style="background:'+st.img+';color:'+st.fg+'"><span class="tag" style="'+st.tag+'">'+p.s+'</span>[ 商品圖 ]</div>'+
+        '<div class="body"><div class="cat">'+p.cat+'</div><h3>'+esc(p.name)+'</h3><div class="price">NT$ [價格]</div>'+
+        '<div class="acts"><button class="add'+(added[p.id]?' done':'')+'" data-add="'+p.id+'">'+label(p.id)+'</button>'+
+        '<button class="fav" aria-pressed="false" aria-label="收藏 '+esc(p.name)+'">'+heart+'</button></div></div></article>';
+    }).join('');
+  }
+  function renderZones(){
+    document.getElementById('darkGrid').innerHTML = DARK.map(function(p){
+      return '<article class="mini"><div class="img ph" style="background:#1C1C1C;border:1px solid #2A2A2A">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="link-btn" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';
+    }).join('');
+    document.getElementById('y2kGrid').innerHTML = Y2K.map(function(p){
+      return '<article class="y-card"><div class="y-meta"><span>ITEM_'+p.code+'</span><span>● IN STOCK</span></div><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="y-add" data-add="'+p.id+'">'+(added[p.id]?'ADDED ✓':'+ CART')+'</button></div></article>';
+    }).join('');
+    document.getElementById('waGrid').innerHTML = WA.map(function(p){
+      return '<article class="wa-card"><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="wa-add" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';
+    }).join('');
+  }
+  document.getElementById('cats').innerHTML = CATS.map(function(c){
+    return '<a class="cat-tile" href="#categories"><small>'+esc(c[0])+'</small><b>'+c[1]+' →</b></a>';
+  }).join('');
+
+  var toastEl = document.getElementById('toast'), tt;
+  function toast(msg){toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(tt); tt = setTimeout(function(){toastEl.classList.remove('show');}, 1800);}
+
+  document.addEventListener('click', function(e){
+    var chip = e.target.closest('[data-chip]');
+    if (chip){ filter = chip.getAttribute('data-chip'); renderNew(); return; }
+    var add = e.target.closest('[data-add]');
+    if (add){
+      var id = add.getAttribute('data-add');
+      added[id] = true; cart += 1;
+      document.getElementById('cartCount').textContent = cart;
+      document.getElementById('cartBtn').setAttribute('aria-label','購物車，'+cart+' 件商品');
+      renderNew(); renderZones();
+      toast('已加入購物車：'+names[id]);
+      return;
+    }
+    var fav = e.target.closest('.fav');
+    if (fav){ var on = fav.getAttribute('aria-pressed')!=='true'; fav.setAttribute('aria-pressed', on); toast(on?'已加入收藏':'已取消收藏'); return; }
+    if (e.target.closest('#cartBtn')){ toast(cart ? '購物車有 '+cart+' 件商品（預覽版尚無結帳頁）' : '購物車是空的'); return; }
+    var mb = e.target.closest('#menuBtn');
+    if (mb){ var nav = document.getElementById('mnav'); var open = !nav.classList.contains('open'); nav.classList.toggle('open', open); mb.setAttribute('aria-expanded', open); return; }
+    if (e.target.closest('#mnav a')){ document.getElementById('mnav').classList.remove('open'); document.getElementById('menuBtn').setAttribute('aria-expanded','false'); }
+  });
+  document.getElementById('joinForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = document.getElementById('email').value.trim();
+    var msg = document.getElementById('formMsg');
+    msg.textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '這是預覽版，訂閱功能會在正式網站開放。' : '請輸入有效的電子郵件，例如 you@example.com。';
+  });
+  renderNew(); renderZones();
+})();
+</script>
+</body>
+</html>
