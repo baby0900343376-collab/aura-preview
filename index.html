@@ -13,7 +13,7 @@
 :root{
   color-scheme: dark;
   --bg:#0B0B0B; --surface:#161616; --surface-2:#1C1C1C; --line:#2A2A2A;
-  --fg:#FFFFFF; --muted:#CCCCCC; --dim:#8A8A8A; --accent:#A855F7;
+  --fg:#FFFFFF; --muted:#CCCCCC; --dim:#8A8A8A; --accent:#A855F7; --on-accent:#0B0B0B;
   --y2k-bg:#0D0A12; --y2k-card:#1A1622; --silver:#E5E7EB; --silver-2:#C0C4CC;
   --wa-bg:#F4F1EA; --wa-card:#E6E0D4; --wa-ink:#1A1A1A; --wa-muted:#4A4740;
   --f-display:'Bodoni Moda','Noto Serif TC',Georgia,serif;
@@ -36,7 +36,7 @@ button{font:inherit;cursor:pointer}
 h1,h2,h3{text-wrap:balance}
 .ph{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.15em;color:var(--dim);text-align:center;padding:8px}
 
-.preview-note{background:var(--accent);color:#0B0B0B;font-size:13px;text-align:center;padding-block:8px;font-weight:700}
+.preview-note{background:var(--accent);color:var(--on-accent);font-size:13px;text-align:center;padding-block:8px;font-weight:700}
 .notice{background:var(--surface-2);color:var(--muted);font-size:13px;letter-spacing:.06em;text-align:center;padding-block:9px}
 
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -46,7 +46,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:va
 .nav a{text-decoration:none;color:var(--muted)}.nav a:hover{color:var(--fg)}
 .icons{display:flex;align-items:center;gap:2px}
 .ibtn{width:44px;height:44px;border:0;background:none;color:var(--fg);display:flex;align-items:center;justify-content:center;position:relative}
-.cart-badge{position:absolute;top:5px;right:3px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:#0B0B0B;font:700 11px var(--f-mono);display:flex;align-items:center;justify-content:center;padding:0 4px}
+.cart-badge{position:absolute;top:5px;right:3px;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:var(--on-accent);font:700 11px var(--f-mono);display:flex;align-items:center;justify-content:center;padding:0 4px}
 .menu-btn{display:none}
 @media (max-width:960px){.nav{display:none}.menu-btn{display:flex}}
 .mnav{display:none;flex-direction:column;border-top:1px solid var(--line);padding-block:8px}
@@ -186,7 +186,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:va
 .field{display:flex;flex-direction:column;gap:6px;flex:1 1 260px}
 .field label{font-size:13px;color:var(--muted)}
 .field input{height:48px;padding:0 14px;background:var(--bg);border:1px solid #3A3A3A;color:var(--fg);font:inherit;width:100%}
-.join button{height:48px;padding:0 28px;background:var(--accent);color:#0B0B0B;border:0;font-weight:700}
+.join button{height:48px;padding:0 28px;background:var(--accent);color:var(--on-accent);border:0;font-weight:700}
 .form-msg{flex-basis:100%;margin:0;font-size:13px;color:var(--muted);min-height:20px}
 
 footer{border-top:1px solid var(--line)}
@@ -217,7 +217,7 @@ footer{border-top:1px solid var(--line)}
 .d-foot{border-top:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:10px}
 .d-row{display:flex;justify-content:space-between;font-size:14px}
 .d-row b{font-family:var(--f-mono)}
-.checkout{height:52px;background:var(--accent);color:#0B0B0B;border:0;font-weight:700;font-size:15px}
+.checkout{height:52px;background:var(--accent);color:var(--on-accent);border:0;font-weight:700;font-size:15px}
 .d-note{margin:0;font-size:12px;color:var(--muted)}
 .nav a[aria-current="page"]{color:var(--fg);box-shadow:inset 0 -2px 0 var(--accent)}
 .mnav a[aria-current="page"]{color:var(--accent)}
@@ -257,12 +257,86 @@ footer{border-top:1px solid var(--line)}
 .others-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
 .others-grid .panel{min-height:0}
 .others-grid .panel .ph{display:none}
+.zone-y2k,.p-y2k{--accent:#A855F7;--on-accent:#0B0B0B}
+.perk svg{stroke:var(--accent)}
+body,header,.ticker{transition:background-color .3s ease}
+.hero{position:relative}
+.hero-mark{position:absolute;top:24px;right:max(16px, env(safe-area-inset-right,0px));font-family:var(--f-mincho);font-size:clamp(80px,14vw,180px);line-height:1;color:transparent;-webkit-text-stroke:1px var(--accent);opacity:.55;pointer-events:none;user-select:none}
+@media (max-width:720px){.hero-mark{font-size:72px;top:12px;opacity:.4}}
+.hero-top{position:relative}
+.empty-note{grid-column:1/-1;margin:0;padding:32px;border:1px dashed var(--line);color:var(--muted);text-align:center}
+.zone-wa .empty-note{border-color:#BDB6A8;color:#5E5A52}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.admin-btn{height:36px;padding:0 12px;margin-right:4px;border:1px solid var(--accent);background:transparent;color:var(--fg);font-size:13px;letter-spacing:.06em}
+.admin-btn:hover{background:var(--accent);color:var(--on-accent)}
+body.admin-open{overflow:hidden}
+.admin{position:fixed;inset:0;z-index:60;background:#111113;color:#F2F2F3;overflow-y:auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);font-family:var(--f-body)}
+.a-top{position:sticky;top:0;z-index:2;background:#111113;border-bottom:1px solid #2C2C30}
+.a-topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-block:14px 6px}
+.a-head h2{margin:0;font-size:20px;letter-spacing:.06em}
+.a-status{margin:2px 0 0;font-size:13px;color:#B4B4BB}
+.a-status.warn{color:#FCD34D}
+.a-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.a-btn{height:40px;padding:0 16px;border:1px solid #3F3F46;background:#1C1C20;color:#F2F2F3;font-size:14px}
+.a-btn:hover{border-color:#71717A}
+.a-btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.a-btn:disabled{opacity:.6;cursor:progress}
+.a-tabs{display:flex;gap:4px;overflow-x:auto}
+.a-tabs button{height:44px;padding:0 18px;border:0;background:none;color:#B4B4BB;font-size:15px;border-bottom:2px solid transparent;white-space:nowrap}
+.a-tabs button[aria-selected="true"]{color:#F2F2F3;border-bottom-color:var(--accent)}
+.a-body{padding-block:24px 64px;display:block}
+.a-body [data-panel]{display:flex;flex-direction:column;gap:20px}
+.a-body [data-panel][hidden]{display:none}
+.a-card{background:#18181B;border:1px solid #2C2C30;padding:20px;min-width:0}
+.a-card h3{margin:0 0 12px;font-size:16px}
+.a-hint{margin:0 0 14px;font-size:13px;color:#B4B4BB;font-weight:400}
+.a-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:14px;align-items:end}
+.a-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.a-field.wide{grid-column:1/-1}
+.a-field label{font-size:13px;color:#B4B4BB}
+.a-field.check label{display:flex;align-items:center;gap:8px;min-height:44px;color:#F2F2F3;font-size:14px}
+.a-in{height:44px;padding:0 10px;background:#0E0E10;border:1px solid #3F3F46;color:#F2F2F3;font:inherit;font-size:14px;width:100%;min-width:0}
+.a-in:focus{border-color:var(--accent);outline:none}
+select.a-in{padding-right:4px}
+.a-msg{margin:10px 0 0;font-size:13px;color:#B4B4BB;min-height:18px}
+.a-listhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.a-listhead h3{margin:0}
+.a-filters{display:flex;flex-wrap:wrap;gap:8px}
+.a-filters .a-in{width:auto;min-width:150px}
+.a-table-wrap{overflow-x:auto;border:1px solid #2C2C30}
+.a-table{width:100%;min-width:760px;border-collapse:collapse;font-size:14px}
+.a-table th{text-align:left;font-weight:500;font-size:12px;letter-spacing:.06em;color:#B4B4BB;padding:10px 8px;border-bottom:1px solid #2C2C30;background:#141416}
+.a-table td{padding:6px 8px;border-bottom:1px solid #232327;vertical-align:middle}
+.a-table td.c{text-align:center}
+.a-table input[type="checkbox"],.a-field input[type="checkbox"]{width:20px;height:20px;accent-color:var(--accent)}
+.a-table .name{min-width:200px}
+.a-price{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px;color:#B4B4BB}
+.a-price .num{width:110px;font-variant-numeric:tabular-nums}
+.a-del{height:40px;padding:0 12px;border:1px solid #3F3F46;background:none;color:#FCA5A5;font-size:13px;white-space:nowrap}
+.a-del[data-armed="1"]{background:#7F1D1D;border-color:#7F1D1D;color:#FFF}
+.a-empty{text-align:center;color:#B4B4BB;padding:24px}
+.a-themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,100%),1fr));gap:10px}
+.a-theme{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px;border:1px solid #3F3F46;background:#0E0E10;color:#F2F2F3;text-align:left;min-height:120px}
+.a-theme[aria-pressed="true"]{border-color:#F2F2F3;box-shadow:inset 0 0 0 1px #F2F2F3}
+.a-theme .sw{width:100%;height:40px;display:flex;align-items:flex-end;padding:6px;border:1px solid #2C2C30}
+.a-theme .sw i{width:34px;height:10px}
+.a-theme b{font-size:15px}
+.a-theme small{font-size:11px;color:#B4B4BB;letter-spacing:.04em}
+.a-secs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border:1px solid #2C2C30}
+.a-sec{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 12px;border-bottom:1px solid #232327}
+.a-sec:last-child{border-bottom:0}
+.a-sec label{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px}
+.a-sec input{width:20px;height:20px;accent-color:var(--accent)}
+.a-move{display:flex;gap:6px}
+.a-move button{width:44px;height:44px;border:1px solid #3F3F46;background:#1C1C20;color:#F2F2F3;font-size:16px}
+.a-move button:disabled{opacity:.35;cursor:default}
+.a-mini{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:55;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:10px 12px 10px 18px;background:#18181B;border:1px solid var(--accent);color:#F2F2F3;font-size:13px;max-width:calc(100% - 32px);box-shadow:0 8px 30px rgba(0,0,0,.5)}
 </style>
 </head>
 <body>
 
 <div class="preview-note">設計預覽 · 商品名稱與圖片為示意，價格待填</div>
-<div class="notice">全館滿 NT$ [金額] 免運 · 超商取貨 / 宅配 · 新會員首購 [折扣]</div>
+<div class="notice" id="notice">全館滿 NT$ [金額] 免運 · 超商取貨 / 宅配 · 新會員首購 [折扣]</div>
 
 <header>
   <div class="wrap">
@@ -286,13 +360,14 @@ footer{border-top:1px solid var(--line)}
 
 <main>
 <div data-view="home">
-<section class="hero wrap">
+<section class="hero wrap" data-sec="hero">
+  <span class="hero-mark" id="heroMark" aria-hidden="true" hidden></span>
   <div class="hero-top">
     <div>
-      <p class="eyebrow">AURA / ONE STORE · THREE WORLDS</p>
-      <h1>Beyond the <em>Ordinary</em></h1>
+      <p class="eyebrow" id="heroEyebrow">AURA / ONE STORE · THREE WORLDS</p>
+      <h1 id="heroTitle">Beyond the <em>Ordinary</em></h1>
     </div>
-    <p>一個網站，三種風格。從暗黑精品、Y2K 賽博到日系簡約，選一個屬於你的世界。</p>
+    <p id="heroSub">一個網站，三種風格。從暗黑精品、Y2K 賽博到日系簡約，選一個屬於你的世界。</p>
   </div>
   <div class="panels">
     <a class="panel p-dark" href="#dark">
@@ -309,7 +384,7 @@ footer{border-top:1px solid var(--line)}
     </a>
   </div>
 </section>
-<section class="perks" aria-label="購物保障">
+<section class="perks" aria-label="購物保障" data-sec="perks">
   <div class="wrap">
     <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><div><b>超商取貨 · 宅配</b><span>7-11 / 全家 / 宅配到府</span></div></div>
     <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>多元付款</b><span>信用卡 / LINE Pay / 超商代碼</span></div></div>
@@ -317,19 +392,19 @@ footer{border-top:1px solid var(--line)}
     <div class="perk"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="1.5"><path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 16.6 6.7 19.5l1.1-6L3.4 9.3l6-.8z"/></svg><div><b>會員點數回饋</b><span>消費累積 · 生日禮遇</span></div></div>
   </div>
 </section>
-<section id="new" class="section wrap">
+<section id="new" class="section wrap" data-sec="new">
   <div class="sec-head">
     <div><p class="eyebrow">NEW ARRIVALS</p><h2>新品上架</h2></div>
     <div class="chips" role="group" aria-label="依分類篩選" id="chips"></div>
   </div>
   <div class="products" id="newGrid"></div>
 </section>
-<section id="categories" class="section wrap">
+<section id="categories" class="section wrap" data-sec="categories">
   <p class="eyebrow">SHOP BY CATEGORY</p>
   <div class="sec-head"><h2>全部分類</h2></div>
   <div class="cats" id="cats"></div>
 </section>
-<section id="story" class="story">
+<section id="story" class="story" data-sec="story">
   <div class="wrap">
     <p class="eyebrow">THE AURA WORLD</p>
     <h2>Individuality / Rebellion / Street Culture</h2>
@@ -423,102 +498,267 @@ footer{border-top:1px solid var(--line)}
   <div class="d-head"><h2 id="drawerTitle">購物車（<span id="dCount">0</span>）</h2><button class="ibtn" id="closeCart" aria-label="關閉購物車"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <ul class="d-list" id="dList"></ul>
   <div class="d-foot" id="dFoot">
-    <div class="d-row"><span>商品小計</span><b>NT$ [小計]</b></div>
+    <div class="d-row"><span>商品小計</span><b id="dSubtotal">NT$ [小計]</b></div>
     <div class="d-row"><span>運費</span><span>結帳時計算</span></div>
     <button class="checkout" id="checkoutBtn">前往結帳</button>
     <p class="d-note" id="dNote">預覽版：結帳、付款會在正式網站開放。</p>
   </div>
 </aside>
 
+<div class="admin" id="admin" role="dialog" aria-modal="true" aria-labelledby="adminTitle" hidden>
+  <div class="a-top">
+    <div class="wrap a-topbar">
+      <div class="a-head">
+        <h2 id="adminTitle">AURA 後台</h2>
+        <p id="aStatus" class="a-status" role="status">所有變更都已儲存</p>
+      </div>
+      <div class="a-actions">
+        <button class="a-btn" id="aPreview">預覽網站</button>
+        <button class="a-btn" id="aDiscard">放棄變更</button>
+        <button class="a-btn primary a-save">儲存並發布</button>
+        <button class="ibtn" id="aClose" aria-label="關閉後台"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="a-tabs" role="tablist" aria-label="後台功能">
+        <button role="tab" data-tab="products" aria-selected="true">商品管理</button>
+        <button role="tab" data-tab="theme" aria-selected="false">節慶風格</button>
+        <button role="tab" data-tab="layout" aria-selected="false">版面設定</button>
+      </div>
+    </div>
+  </div>
+  <div class="a-body wrap">
+    <div data-panel="products">
+      <form class="a-card a-add" id="aAdd" novalidate>
+        <h3>新增商品</h3>
+        <div class="a-grid">
+          <div class="a-field wide"><label for="addName">商品名稱</label><input id="addName" class="a-in" maxlength="60" placeholder="例如：寬版連帽外套"></div>
+          <div class="a-field"><label for="addZone">風格專區</label><select id="addZone" class="a-in"></select></div>
+          <div class="a-field"><label for="addCat">分類</label><select id="addCat" class="a-in"></select></div>
+          <div class="a-field"><label for="addPrice">價格（NT$）</label><input id="addPrice" class="a-in" type="number" min="0" step="1" inputmode="numeric" placeholder="未定可留空"></div>
+          <div class="a-field check"><label><input type="checkbox" id="addNew" checked> 顯示在首頁新品</label></div>
+          <div class="a-field"><button type="submit" class="a-btn primary">新增商品</button></div>
+        </div>
+        <p class="a-msg" id="addMsg" role="status"></p>
+      </form>
+      <div class="a-card">
+        <div class="a-listhead">
+          <h3>商品列表 <span class="a-hint" id="aProdCount"></span></h3>
+          <div class="a-filters">
+            <label class="sr" for="aSearch">搜尋商品</label><input id="aSearch" class="a-in" type="search" placeholder="搜尋商品名稱">
+            <label class="sr" for="aZoneFilter">依專區篩選</label><select id="aZoneFilter" class="a-in"></select>
+          </div>
+        </div>
+        <p class="a-hint">直接在表格裡修改名稱、專區、分類和價格。價格留空會顯示「NT$ [價格]」。取消「上架」會暫時隱藏商品，不會刪除。</p>
+        <div class="a-table-wrap">
+          <table class="a-table">
+            <thead><tr><th scope="col">商品名稱</th><th scope="col">風格專區</th><th scope="col">分類</th><th scope="col">價格</th><th scope="col">新品</th><th scope="col">上架</th><th scope="col"><span class="sr">刪除</span></th></tr></thead>
+            <tbody id="aRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div data-panel="theme" hidden>
+      <div class="a-card">
+        <h3>選擇節慶風格</h3>
+        <p class="a-hint">換風格會改變全站的強調色、背景色調、主視覺文字和頂部公告。三個專區仍保留各自的風格。選了之後下方的文字會換成該節慶的預設內容，你可以再修改。</p>
+        <div class="a-themes" id="aThemes"></div>
+      </div>
+      <div class="a-card">
+        <h3>主視覺與公告文字</h3>
+        <div class="a-grid">
+          <div class="a-field wide"><label for="h-notice">頂部公告列（留空就不顯示）</label><input id="h-notice" class="a-in" data-hf="notice" maxlength="80"></div>
+          <div class="a-field wide"><label for="h-eyebrow">主視覺小標</label><input id="h-eyebrow" class="a-in" data-hf="eyebrow" maxlength="60"></div>
+          <div class="a-field"><label for="h-title">主標題</label><input id="h-title" class="a-in" data-hf="title" maxlength="30"></div>
+          <div class="a-field"><label for="h-em">主標題斜體字</label><input id="h-em" class="a-in" data-hf="em" maxlength="20"></div>
+          <div class="a-field wide"><label for="h-sub">主視覺說明</label><input id="h-sub" class="a-in" data-hf="sub" maxlength="80"></div>
+        </div>
+      </div>
+    </div>
+    <div data-panel="layout" hidden>
+      <div class="a-card">
+        <h3>首頁區塊</h3>
+        <p class="a-hint">勾選要顯示的區塊，用箭頭調整上下順序。</p>
+        <ul class="a-secs" id="aSecs"></ul>
+      </div>
+      <div class="a-card">
+        <h3>風格專區開關</h3>
+        <p class="a-hint">關閉的專區會從導覽列、首頁入口和新品區隱藏，商品資料會保留。</p>
+        <ul class="a-secs" id="aZones"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="a-mini" id="aMini" hidden>
+  <span id="aMiniStatus" role="status">後台編輯中</span>
+  <button class="a-btn" id="aBack">返回後台</button>
+  <button class="a-btn primary a-save">儲存並發布</button>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script type="application/json" id="aura-state">{}</script>
 <script>
 (function(){
-  var cart = {}, added = {}, favs = {}, filter = '全部';
-  var heart = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>';
+  var PRISTINE_BODY = (function(h){ var i=h.indexOf('<title>'); return i>=0 ? h.slice(i) : h; })(document.body.innerHTML);
+  var CATS_ALL = ['上衣','下身','外套','鞋履','配件','生活'];
+  var ZONE_META = {
+    dark:{s:'DARK',title:'暗黑精品',sec:'暗黑精品專區'},
+    y2k:{s:'Y2K',title:'Y2K 賽博',sec:'Y2K 賽博專區'},
+    minimal:{s:'和',title:'日系簡約',sec:'日系簡約專區'}
+  };
+  var SECTIONS = {hero:'主視覺與三風格入口',perks:'購物保障列',new:'新品上架',categories:'全部分類',story:'品牌故事'};
+  var THEMES = {
+    default:{name:'品牌預設',accent:'#A855F7',on:'#0B0B0B',bg:'#0B0B0B',mark:'',hero:{eyebrow:'AURA / ONE STORE · THREE WORLDS',title:'Beyond the',em:'Ordinary',sub:'一個網站，三種風格。從暗黑精品、Y2K 賽博到日系簡約，選一個屬於你的世界。',notice:'全館滿 NT$ [金額] 免運 · 超商取貨 / 宅配 · 新會員首購 [折扣]'}},
+    cny:{name:'農曆新年',accent:'#E0B54A',on:'#1A0A06',bg:'#150806',mark:'春',hero:{eyebrow:'LUNAR NEW YEAR · 新春限定',title:'Fortune',em:'Season',sub:'新春選物上架，三種風格都有開運新衣。滿額再送紅包袋。',notice:'新春活動 [日期] · 全館 [折扣] · 年前最後出貨日 [日期]'}},
+    valentine:{name:'情人節',accent:'#F472B6',on:'#1A0B12',bg:'#120A0E',mark:'♡',hero:{eyebrow:'VALENTINE’S EDIT · 情人節選物',title:'Wear it',em:'Together',sub:'情侶款與送禮選物，結帳可加購禮品包裝。',notice:'情人節限定 · 滿 NT$ [金額] 免費禮品包裝 · [日期] 前下單'}},
+    summer:{name:'夏日特賣',accent:'#2DD4BF',on:'#04201C',bg:'#071312',mark:'夏',hero:{eyebrow:'SUMMER DROP · 夏日特賣',title:'Heat',em:'Wave',sub:'透氣材質與短袖新品，夏天也穿出風格。',notice:'夏日特賣 [日期] · 指定商品 [折扣] · 滿 NT$ [金額] 免運'}},
+    halloween:{name:'萬聖節',accent:'#FB923C',on:'#1A0D04',bg:'#0E0A08',mark:'夜',hero:{eyebrow:'HALLOWEEN NIGHT · 萬聖限定',title:'After',em:'Dark',sub:'暗黑系與 Y2K 單品限時加碼，穿上你的另一個自己。',notice:'萬聖節限定 [日期] · 暗黑精品 [折扣] · 加購神秘小物'}},
+    double11:{name:'雙 11',accent:'#FF5A5A',on:'#1A0505',bg:'#0B0B0B',mark:'11',hero:{eyebrow:'11.11 · 年度最大檔',title:'The Big',em:'Sale',sub:'全站三大風格同步開賣，限時折扣與滿額贈。',notice:'雙 11 限定 [日期] · 全館 [折扣] · 滿 NT$ [金額] 再折 [金額]'}},
+    xmas:{name:'聖誕節',accent:'#4ADE80',on:'#04150A',bg:'#0A0F0C',mark:'✦',hero:{eyebrow:'HOLIDAY GIFTING · 聖誕送禮',title:'Gift',em:'Season',sub:'送禮指南上線，三種風格都幫你挑好了。',notice:'聖誕送禮 · [日期] 前下單保證到貨 · 滿 NT$ [金額] 送賀卡'}}
+  };
+  var DEFAULT = {
+    v:1, theme:'default', hero:clone(THEMES.default.hero),
+    layout:{order:['hero','perks','new','categories','story'],hidden:{},zones:{dark:true,y2k:true,minimal:true}},
+    products:[
+      {id:'n1',name:'重磅落肩 Logo T-shirt',cat:'上衣',zone:'dark',price:null,isNew:true,on:true},
+      {id:'n2',name:'金屬感短版夾克',cat:'外套',zone:'y2k',price:null,isNew:true,on:true},
+      {id:'n3',name:'亞麻寬版襯衫',cat:'上衣',zone:'minimal',price:null,isNew:true,on:true},
+      {id:'n4',name:'工裝多口袋長褲',cat:'下身',zone:'dark',price:null,isNew:true,on:true},
+      {id:'n5',name:'銀色漆面斜背包',cat:'配件',zone:'y2k',price:null,isNew:true,on:true},
+      {id:'n6',name:'棉麻九分寬褲',cat:'下身',zone:'minimal',price:null,isNew:true,on:true},
+      {id:'n7',name:'立領羊毛大衣',cat:'外套',zone:'dark',price:null,isNew:true,on:true},
+      {id:'n8',name:'帆布托特包',cat:'配件',zone:'minimal',price:null,isNew:true,on:true},
+      {id:'d1',name:'極簡剪裁西裝外套',cat:'外套',zone:'dark',price:null,isNew:false,on:true},
+      {id:'d2',name:'絲光棉黑色襯衫',cat:'上衣',zone:'dark',price:null,isNew:false,on:true},
+      {id:'d3',name:'皮革切爾西靴',cat:'鞋履',zone:'dark',price:null,isNew:false,on:true},
+      {id:'d4',name:'高腰直筒西裝褲',cat:'下身',zone:'dark',price:null,isNew:false,on:true},
+      {id:'d5',name:'雙排扣長版大衣',cat:'外套',zone:'dark',price:null,isNew:false,on:true},
+      {id:'d6',name:'皮革方形手提包',cat:'配件',zone:'dark',price:null,isNew:false,on:true},
+      {id:'y1',name:'鏡面銀短版背心',cat:'上衣',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'y2',name:'紫色鏡片墨鏡',cat:'配件',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'y3',name:'尼龍降落傘長褲',cat:'下身',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'y4',name:'金屬扣厚底鞋',cat:'鞋履',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'y5',name:'漆皮飛行外套',cat:'外套',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'y6',name:'鏈條金屬腰包',cat:'配件',zone:'y2k',price:null,isNew:false,on:true},
+      {id:'m1',name:'羊毛混紡針織衫',cat:'上衣',zone:'minimal',price:null,isNew:false,on:true},
+      {id:'m2',name:'燕麥色寬版長褲',cat:'下身',zone:'minimal',price:null,isNew:false,on:true},
+      {id:'m3',name:'手作陶瓷馬克杯',cat:'生活',zone:'minimal',price:null,isNew:false,on:true},
+      {id:'m4',name:'亞麻開襟外套',cat:'外套',zone:'minimal',price:null,isNew:false,on:true},
+      {id:'m5',name:'帆布懶人鞋',cat:'鞋履',zone:'minimal',price:null,isNew:false,on:true},
+      {id:'m6',name:'麻質束口袋',cat:'配件',zone:'minimal',price:null,isNew:false,on:true}
+    ]
+  };
+  function clone(o){return JSON.parse(JSON.stringify(o));}
+  function normalize(x){
+    var s = clone(DEFAULT);
+    if(!x || typeof x!=='object') return s;
+    if(THEMES[x.theme]) s.theme=x.theme;
+    if(x.hero) Object.keys(s.hero).forEach(function(k){ if(typeof x.hero[k]==='string') s.hero[k]=x.hero[k]; });
+    if(x.layout){
+      if(Array.isArray(x.layout.order)){ var o=x.layout.order.filter(function(k){return SECTIONS[k];}); Object.keys(SECTIONS).forEach(function(k){if(o.indexOf(k)<0)o.push(k);}); s.layout.order=o; }
+      if(x.layout.hidden) Object.keys(SECTIONS).forEach(function(k){ if(x.layout.hidden[k]) s.layout.hidden[k]=true; });
+      if(x.layout.zones) Object.keys(ZONE_META).forEach(function(z){ s.layout.zones[z]=x.layout.zones[z]!==false; });
+    }
+    if(Array.isArray(x.products)) s.products=x.products.filter(function(p){return p && p.id && p.name && ZONE_META[p.zone];}).map(function(p){
+      return {id:String(p.id),name:String(p.name).slice(0,60),cat:CATS_ALL.indexOf(p.cat)>=0?p.cat:'上衣',zone:p.zone,price:(typeof p.price==='number'&&p.price>=0)?Math.round(p.price):null,isNew:!!p.isNew,on:p.on!==false};
+    });
+    return s;
+  }
+
+  var mode = window.claude && window.claude.use ? 'pending' : 'local';
+  var saved = null;
+  try { saved = JSON.parse(document.getElementById('aura-state').textContent); } catch(e) {}
+  if (mode==='local') { try { var ls = localStorage.getItem('aura-store'); if (ls) saved = JSON.parse(ls); } catch(e) {} }
+  var S = normalize(saved);      // saved / published state
+  var D = clone(S);              // working copy shown on the page
+  var cart = {}, favs = {}, filter = '全部', zf = {dark:'全部',y2k:'全部',minimal:'全部'};
+  var art = null;
+
   var STYLE = {
     DARK:{img:'#1C1C1C',fg:'#8A8A8A',tag:'background:#FFFFFF;color:#0B0B0B'},
     Y2K:{img:'#1A1622',fg:'#C0C4CC',tag:'background:#A855F7;color:#0B0B0B'},
     '和':{img:'#E6E0D4',fg:'#5E5A52',tag:'background:#1A1A1A;color:#F4F1EA'}
   };
-  var NEW = [
-    {id:'n1',name:'重磅落肩 Logo T-shirt',cat:'上衣',s:'DARK'},
-    {id:'n2',name:'金屬感短版夾克',cat:'外套',s:'Y2K'},
-    {id:'n3',name:'亞麻寬版襯衫',cat:'上衣',s:'和'},
-    {id:'n4',name:'工裝多口袋長褲',cat:'下身',s:'DARK'},
-    {id:'n5',name:'銀色漆面斜背包',cat:'配件',s:'Y2K'},
-    {id:'n6',name:'棉麻九分寬褲',cat:'下身',s:'和'},
-    {id:'n7',name:'立領羊毛大衣',cat:'外套',s:'DARK'},
-    {id:'n8',name:'帆布托特包',cat:'配件',s:'和'}
-  ];
-  var ZONES = {
-    dark:{s:'DARK',title:'暗黑精品',items:[
-      {id:'d1',name:'極簡剪裁西裝外套',cat:'外套'},{id:'d2',name:'絲光棉黑色襯衫',cat:'上衣'},{id:'d3',name:'皮革切爾西靴',cat:'鞋履'},
-      {id:'d4',name:'高腰直筒西裝褲',cat:'下身'},{id:'d5',name:'雙排扣長版大衣',cat:'外套'},{id:'d6',name:'皮革方形手提包',cat:'配件'}]},
-    y2k:{s:'Y2K',title:'Y2K 賽博',items:[
-      {id:'y1',code:'001',name:'鏡面銀短版背心',cat:'上衣'},{id:'y2',code:'002',name:'紫色鏡片墨鏡',cat:'配件'},{id:'y3',code:'003',name:'尼龍降落傘長褲',cat:'下身'},
-      {id:'y4',code:'004',name:'金屬扣厚底鞋',cat:'鞋履'},{id:'y5',code:'005',name:'漆皮飛行外套',cat:'外套'},{id:'y6',code:'006',name:'鏈條金屬腰包',cat:'配件'}]},
-    minimal:{s:'和',title:'日系簡約',items:[
-      {id:'m1',name:'羊毛混紡針織衫',cat:'上衣'},{id:'m2',name:'燕麥色寬版長褲',cat:'下身'},{id:'m3',name:'手作陶瓷馬克杯',cat:'生活'},
-      {id:'m4',name:'亞麻開襟外套',cat:'外套'},{id:'m5',name:'帆布懶人鞋',cat:'鞋履'},{id:'m6',name:'麻質束口袋',cat:'配件'}]}
-  };
-  var zf = {dark:'全部',y2k:'全部',minimal:'全部'};
-  var CATS = [['TOPS','上衣'],['BOTTOMS','下身'],['OUTERWEAR','外套'],['SHOES','鞋履'],['BAGS & ACC.','包款配件'],['LIFESTYLE','生活選物']];
-  var names = {};
-  var meta = {};
-  NEW.forEach(function(p){meta[p.id]={s:p.s,zone:{DARK:'暗黑精品',Y2K:'Y2K 賽博','和':'日系簡約'}[p.s]+' · '+p.cat};});
-  Object.keys(ZONES).forEach(function(z){ZONES[z].items.forEach(function(p){meta[p.id]={s:ZONES[z].s,zone:ZONES[z].title+'專區 · '+p.cat};names[p.id]=p.name;});});
-  NEW.forEach(function(p){names[p.id]=p.name;});
-  function total(){var n=0;for(var k in cart)n+=cart[k];return n;}
-  function renderCart(){
-    var n=total(), ids=Object.keys(cart);
-    document.getElementById('cartCount').textContent=n;
-    document.getElementById('dCount').textContent=n;
-    document.getElementById('cartBtn').setAttribute('aria-label','購物車，'+n+' 件商品');
-    document.getElementById('dFoot').hidden = !ids.length;
-    document.getElementById('dList').innerHTML = ids.length ? ids.map(function(id){
-      var st=STYLE[meta[id].s];
-      return '<li class="d-item"><div class="d-thumb" style="background:'+st.img+'"><span class="tag" style="'+st.tag+'">'+meta[id].s+'</span></div>'+
-        '<div style="min-width:0"><p class="d-name">'+esc(names[id])+'</p><div class="d-sub">'+meta[id].zone+' · 尺寸 [M]</div><div class="d-sub">NT$ [價格]</div>'+
-        '<div class="qty"><button data-dec="'+id+'" aria-label="減少 '+esc(names[id])+' 數量">−</button><span>'+cart[id]+'</span><button data-inc="'+id+'" aria-label="增加 '+esc(names[id])+' 數量">＋</button></div></div>'+
-        '<button class="rm" data-rm="'+id+'">移除</button></li>';
-    }).join('') : '<li class="d-empty">購物車是空的。<br><a href="#new" id="goShop">去逛新品</a></li>';
-  }
-  var lastFocus;
-  function openCart(){lastFocus=document.activeElement;document.getElementById('scrim').hidden=false;document.getElementById('drawer').hidden=false;document.getElementById('closeCart').focus();}
-  function closeCart(){document.getElementById('scrim').hidden=true;document.getElementById('drawer').hidden=true;if(lastFocus)lastFocus.focus();}
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('drawer').hidden)closeCart();});
-
+  var heart = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>';
+  var CATTILES = [['TOPS','上衣'],['BOTTOMS','下身'],['OUTERWEAR','外套'],['SHOES','鞋履'],['BAGS & ACC.','包款配件'],['LIFESTYLE','生活選物']];
+  function $(id){return document.getElementById(id);}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function label(id){return added[id] ? '已加入 ✓' : '加入購物車';}
+  function byId(id){for(var i=0;i<D.products.length;i++) if(D.products[i].id===id) return D.products[i]; return null;}
+  function shown(p){return p.on && D.layout.zones[p.zone];}
+  function price(p){return p.price!=null ? 'NT$ '+p.price.toLocaleString('en-US') : 'NT$ [價格]';}
+  function label(id){return cart[id] ? '已加入 ✓' : '加入購物車';}
 
-  function renderNew(){
-    document.getElementById('chips').innerHTML = ['全部','上衣','下身','外套','配件'].map(function(c){
-      return '<button class="chip" data-chip="'+c+'" aria-pressed="'+(c===filter)+'">'+c+'</button>';
-    }).join('');
-    document.getElementById('newGrid').innerHTML = NEW.filter(function(p){return filter==='全部'||p.cat===filter;}).map(function(p){
-      var st = STYLE[p.s];
-      return '<article class="card"><div class="img ph" style="background:'+st.img+';color:'+st.fg+'"><span class="tag" style="'+st.tag+'">'+p.s+'</span>[ 商品圖 ]</div>'+
-        '<div class="body"><div class="cat">'+p.cat+'</div><h3>'+esc(p.name)+'</h3><div class="price">NT$ [價格]</div>'+
-        '<div class="acts"><button class="add'+(added[p.id]?' done':'')+'" data-add="'+p.id+'">'+label(p.id)+'</button>'+
-        '<button class="fav" data-fav="'+p.id+'" aria-pressed="'+(!!favs[p.id])+'" aria-label="收藏 '+esc(p.name)+'">'+heart+'</button></div></div></article>';
-    }).join('');
+  /* ---------- storefront ---------- */
+  function applyTheme(){
+    var t = THEMES[D.theme], r = document.documentElement.style;
+    r.setProperty('--accent', t.accent); r.setProperty('--on-accent', t.on); r.setProperty('--bg', t.bg);
+    $('heroEyebrow').textContent = D.hero.eyebrow;
+    $('heroTitle').innerHTML = esc(D.hero.title) + (D.hero.em ? ' <em>'+esc(D.hero.em)+'</em>' : '');
+    $('heroSub').textContent = D.hero.sub;
+    $('notice').textContent = D.hero.notice;
+    $('notice').hidden = !D.hero.notice;
+    $('heroMark').textContent = t.mark; $('heroMark').hidden = !t.mark;
   }
-  var CARD = {
-    dark:function(p){return '<article class="mini"><div class="img ph" style="background:#1C1C1C;border:1px solid #2A2A2A">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="link-btn" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';},
-    y2k:function(p){return '<article class="y-card"><div class="y-meta"><span>ITEM_'+p.code+'</span><span>● IN STOCK</span></div><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="y-add" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';},
-    minimal:function(p){return '<article class="wa-card"><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">NT$ [價格]</span><button class="wa-add" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';}
-  };
-  function renderZones(){
-    Object.keys(ZONES).forEach(function(z){
-      var items=ZONES[z].items, cats=['全部'];
-      items.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat);});
-      document.getElementById(z+'Chips').innerHTML=cats.map(function(c){return '<button class="chip" data-zchip="'+z+'|'+c+'" aria-pressed="'+(zf[z]===c)+'">'+c+'</button>';}).join('');
-      var shown=items.filter(function(p){return zf[z]==='全部'||p.cat===zf[z];});
-      document.getElementById(z+'Count').textContent='共 '+shown.length+' 件商品';
-      document.getElementById(z+'Grid').innerHTML=shown.map(CARD[z]).join('');
+  function applyLayout(){
+    var home = document.querySelector('[data-view="home"]');
+    D.layout.order.forEach(function(k){ var el = home.querySelector('[data-sec="'+k+'"]'); if(el){ home.appendChild(el); el.hidden = !!D.layout.hidden[k]; } });
+    Object.keys(ZONE_META).forEach(function(z){
+      var on = D.layout.zones[z];
+      document.querySelectorAll('.nav a[href="#'+z+'"], .mnav a[href="#'+z+'"], .panels a[href="#'+z+'"]').forEach(function(a){a.hidden=!on;});
     });
   }
+  function renderNew(){
+    var items = D.products.filter(function(p){return p.isNew && shown(p);});
+    var cats = ['全部']; items.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat);});
+    if(cats.indexOf(filter)<0) filter='全部';
+    $('chips').innerHTML = cats.map(function(c){return '<button class="chip" data-chip="'+c+'" aria-pressed="'+(c===filter)+'">'+c+'</button>';}).join('');
+    var list = items.filter(function(p){return filter==='全部'||p.cat===filter;});
+    $('newGrid').innerHTML = list.length ? list.map(function(p){
+      var s = ZONE_META[p.zone].s, st = STYLE[s];
+      return '<article class="card"><div class="img ph" style="background:'+st.img+';color:'+st.fg+'"><span class="tag" style="'+st.tag+'">'+s+'</span>[ 商品圖 ]</div>'+
+        '<div class="body"><div class="cat">'+p.cat+'</div><h3>'+esc(p.name)+'</h3><div class="price">'+price(p)+'</div>'+
+        '<div class="acts"><button class="add'+(cart[p.id]?' done':'')+'" data-add="'+p.id+'">'+label(p.id)+'</button>'+
+        '<button class="fav" data-fav="'+p.id+'" aria-pressed="'+(!!favs[p.id])+'" aria-label="收藏 '+esc(p.name)+'">'+heart+'</button></div></div></article>';
+    }).join('') : '<p class="empty-note">目前沒有標記為新品的商品。到後台把商品勾選「新品」就會出現在這裡。</p>';
+  }
+  var CARD = {
+    dark:function(p){return '<article class="mini"><div class="img ph" style="background:#1C1C1C;border:1px solid #2A2A2A">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">'+price(p)+'</span><button class="link-btn" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';},
+    y2k:function(p,i){return '<article class="y-card"><div class="y-meta"><span>ITEM_'+('00'+(i+1)).slice(-3)+'</span><span>● IN STOCK</span></div><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">'+price(p)+'</span><button class="y-add" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';},
+    minimal:function(p){return '<article class="wa-card"><div class="img ph">[ 商品圖 ]</div><h3>'+esc(p.name)+'</h3><div class="row"><span class="price">'+price(p)+'</span><button class="wa-add" data-add="'+p.id+'">'+label(p.id)+'</button></div></article>';}
+  };
+  function renderZones(){
+    Object.keys(ZONE_META).forEach(function(z){
+      var items = D.products.filter(function(p){return p.zone===z && p.on;});
+      var cats = ['全部']; items.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat);});
+      if(cats.indexOf(zf[z])<0) zf[z]='全部';
+      $(z+'Chips').innerHTML = cats.map(function(c){return '<button class="chip" data-zchip="'+z+'|'+c+'" aria-pressed="'+(zf[z]===c)+'">'+c+'</button>';}).join('');
+      var list = items.filter(function(p){return zf[z]==='全部'||p.cat===zf[z];});
+      $(z+'Count').textContent = '共 '+list.length+' 件商品';
+      $(z+'Grid').innerHTML = list.length ? list.map(CARD[z]).join('') : '<p class="empty-note">這個專區目前沒有上架商品。</p>';
+    });
+  }
+  $('cats').innerHTML = CATTILES.map(function(c){return '<a class="cat-tile" href="#categories"><small>'+esc(c[0])+'</small><b>'+c[1]+' →</b></a>';}).join('');
+
+  function cartTotal(){var n=0;for(var k in cart)n+=cart[k];return n;}
+  function renderCart(){
+    Object.keys(cart).forEach(function(id){var p=byId(id); if(!p||!shown(p)) delete cart[id];});
+    var n=cartTotal(), ids=Object.keys(cart), sum=0, priced=true;
+    $('cartCount').textContent=n; $('dCount').textContent=n;
+    $('cartBtn').setAttribute('aria-label','購物車，'+n+' 件商品');
+    $('dFoot').hidden = !ids.length;
+    $('dList').innerHTML = ids.length ? ids.map(function(id){
+      var p=byId(id), s=ZONE_META[p.zone].s, st=STYLE[s];
+      if(p.price==null) priced=false; else sum+=p.price*cart[id];
+      return '<li class="d-item"><div class="d-thumb" style="background:'+st.img+'"><span class="tag" style="'+st.tag+'">'+s+'</span></div>'+
+        '<div style="min-width:0"><p class="d-name">'+esc(p.name)+'</p><div class="d-sub">'+ZONE_META[p.zone].sec+' · '+p.cat+' · 尺寸 [M]</div><div class="d-sub">'+price(p)+'</div>'+
+        '<div class="qty"><button data-dec="'+id+'" aria-label="減少 '+esc(p.name)+' 數量">−</button><span>'+cart[id]+'</span><button data-inc="'+id+'" aria-label="增加 '+esc(p.name)+' 數量">＋</button></div></div>'+
+        '<button class="rm" data-rm="'+id+'">移除</button></li>';
+    }).join('') : '<li class="d-empty">購物車是空的。<br><a href="#new" id="goShop">去逛新品</a></li>';
+    $('dSubtotal').textContent = priced ? 'NT$ '+sum.toLocaleString('en-US') : 'NT$ [小計]';
+  }
+  function renderStore(){ applyTheme(); applyLayout(); renderNew(); renderZones(); renderCart(); }
+
   var PANELS = {
     dark:'<a class="panel p-dark" href="#dark"><div class="txt"><p class="eyebrow">DARK LUXE</p><h2>暗黑精品</h2><p>黑白極簡、俐落剪裁，低調的高級感。</p><span class="cta">進入專區 →</span></div></a>',
     y2k:'<a class="panel p-y2k grid-bg" href="#y2k"><div class="txt"><p class="eyebrow">Y2K://CYBER</p><h2>Y2K 賽博街頭</h2><p>金屬銀、霓虹紫，千禧年的未來感。</p><span class="cta">進入專區 →</span></div></a>',
@@ -527,65 +767,238 @@ footer{border-top:1px solid var(--line)}
   var TITLES = {home:'AURA 首頁預覽',dark:'暗黑精品 · AURA',y2k:'Y2K 賽博 · AURA',minimal:'日系簡約 · AURA'};
   function route(){
     var h=(location.hash||'').slice(1);
-    var view=ZONES[h]?h:'home';
+    if(h==='admin'){ if(adminAllowed()) openAdmin(); return; }
+    var view = (ZONE_META[h] && D.layout.zones[h]) ? h : 'home';
     document.querySelectorAll('[data-view]').forEach(function(v){v.hidden=v.getAttribute('data-view')!==view;});
-    var others=document.getElementById('others');
-    others.hidden=view==='home';
-    if(view!=='home') document.getElementById('othersGrid').innerHTML=Object.keys(ZONES).filter(function(z){return z!==view;}).map(function(z){return PANELS[z];}).join('');
+    $('others').hidden = view==='home';
+    if(view!=='home') $('othersGrid').innerHTML = Object.keys(ZONE_META).filter(function(z){return z!==view && D.layout.zones[z];}).map(function(z){return PANELS[z];}).join('');
+    if(view!=='home' && !$('othersGrid').innerHTML) $('others').hidden = true;
     document.querySelectorAll('.nav a, .mnav a').forEach(function(a){
-      var t=a.getAttribute('href').slice(1);
-      if(t===view) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+      if(a.getAttribute('href').slice(1)===view) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
     });
-    document.title=TITLES[view];
-    var target = view==='home' && h && h!=='top' ? document.getElementById(h) : null;
-    if(target) target.scrollIntoView(); else window.scrollTo(0,0);
+    document.title = TITLES[view];
+    var target = view==='home' && h && h!=='top' ? $(h) : null;
+    if(target && !target.closest('[hidden]')) target.scrollIntoView(); else window.scrollTo(0,0);
   }
   window.addEventListener('hashchange', route);
-  document.getElementById('cats').innerHTML = CATS.map(function(c){
-    return '<a class="cat-tile" href="#categories"><small>'+esc(c[0])+'</small><b>'+c[1]+' →</b></a>';
-  }).join('');
 
-  var toastEl = document.getElementById('toast'), tt;
-  function toast(msg){toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(tt); tt = setTimeout(function(){toastEl.classList.remove('show');}, 1800);}
+  var toastEl=$('toast'), tt;
+  function toast(msg){toastEl.textContent=msg; toastEl.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){toastEl.classList.remove('show');},2000);}
+  var lastFocus;
+  function openCart(){lastFocus=document.activeElement;$('scrim').hidden=false;$('drawer').hidden=false;$('closeCart').focus();}
+  function closeCart(){$('scrim').hidden=true;$('drawer').hidden=true;if(lastFocus)lastFocus.focus();}
 
-  document.addEventListener('click', function(e){
-    var chip = e.target.closest('[data-chip]');
-    if (chip){ filter = chip.getAttribute('data-chip'); renderNew(); return; }
-    var zc = e.target.closest('[data-zchip]');
-    if (zc){ var parts = zc.getAttribute('data-zchip').split('|'); zf[parts[0]] = parts[1]; renderZones(); return; }
-    var add = e.target.closest('[data-add]');
-    if (add){
-      var id = add.getAttribute('data-add');
-      added[id] = true; cart[id] = (cart[id]||0) + 1;
-      renderNew(); renderZones(); renderCart();
-      toast('已加入購物車：'+names[id]+'（點右上角購物車查看）');
-      return;
+  /* ---------- admin ---------- */
+  var tab='products';
+  function adminAllowed(){return mode==='artifact' || mode==='local';}
+  function isDirty(){return JSON.stringify(D)!==JSON.stringify(S);}
+  function setStatus(msg){
+    var dirty = isDirty();
+    var text = msg || (dirty ? '有未儲存的變更（只有你看得到，按「儲存並發布」後才會公開）' : '所有變更都已儲存');
+    $('aStatus').textContent = text; $('aMiniStatus').textContent = msg || (dirty ? '後台編輯中 · 有未儲存的變更' : '後台編輯中');
+    $('aStatus').classList.toggle('warn', dirty && !msg);
+  }
+  function changed(){ renderStore(); setStatus(); }
+  function openAdmin(){
+    if(history.replaceState && location.hash==='#admin') history.replaceState(null,'',location.pathname+location.search);
+    $('aMini').hidden=true; $('admin').hidden=false; document.body.classList.add('admin-open');
+    renderAdmin(); setStatus(); $('aClose').focus();
+  }
+  function closeAdmin(){ $('admin').hidden=true; $('aMini').hidden=true; document.body.classList.remove('admin-open'); }
+  function previewSite(){ $('admin').hidden=true; document.body.classList.remove('admin-open'); $('aMini').hidden=false; setStatus(); }
+  function opts(list, cur, labels){return list.map(function(v){return '<option value="'+v+'"'+(v===cur?' selected':'')+'>'+(labels?labels[v]:v)+'</option>';}).join('');}
+  var ZLABEL={dark:'暗黑精品',y2k:'Y2K 賽博',minimal:'日系簡約'};
+  function renderAdmin(){
+    document.querySelectorAll('.a-tabs [data-tab]').forEach(function(b){b.setAttribute('aria-selected', b.getAttribute('data-tab')===tab);});
+    document.querySelectorAll('[data-panel]').forEach(function(p){p.hidden=p.getAttribute('data-panel')!==tab;});
+    if(tab==='products') renderAdminProducts();
+    if(tab==='theme') renderAdminTheme();
+    if(tab==='layout') renderAdminLayout();
+  }
+  var pq='', pz='all';
+  function renderAdminProducts(){
+    var rows = D.products.filter(function(p){return (pz==='all'||p.zone===pz) && (!pq || p.name.indexOf(pq)>=0);});
+    $('aProdCount').textContent = '共 '+D.products.length+' 件，顯示 '+rows.length+' 件';
+    $('aRows').innerHTML = rows.length ? rows.map(function(p){
+      return '<tr><td><label class="sr" for="n-'+p.id+'">商品名稱</label><input id="n-'+p.id+'" class="a-in name" data-pid="'+p.id+'" data-pf="name" value="'+esc(p.name)+'" maxlength="60"></td>'+
+        '<td><label class="sr" for="z-'+p.id+'">風格專區</label><select id="z-'+p.id+'" class="a-in" data-pid="'+p.id+'" data-pf="zone">'+opts(Object.keys(ZLABEL),p.zone,ZLABEL)+'</select></td>'+
+        '<td><label class="sr" for="c-'+p.id+'">分類</label><select id="c-'+p.id+'" class="a-in" data-pid="'+p.id+'" data-pf="cat">'+opts(CATS_ALL,p.cat)+'</select></td>'+
+        '<td><label class="sr" for="p-'+p.id+'">價格</label><div class="a-price"><span>NT$</span><input id="p-'+p.id+'" class="a-in num" type="number" min="0" step="1" inputmode="numeric" placeholder="未定" data-pid="'+p.id+'" data-pf="price" value="'+(p.price==null?'':p.price)+'"></div></td>'+
+        '<td class="c"><input type="checkbox" id="w-'+p.id+'" data-pid="'+p.id+'" data-pf="isNew"'+(p.isNew?' checked':'')+' aria-label="'+esc(p.name)+' 顯示在新品"></td>'+
+        '<td class="c"><input type="checkbox" id="o-'+p.id+'" data-pid="'+p.id+'" data-pf="on"'+(p.on?' checked':'')+' aria-label="'+esc(p.name)+' 上架"></td>'+
+        '<td><button class="a-del" data-del="'+p.id+'">刪除</button></td></tr>';
+    }).join('') : '<tr><td colspan="7" class="a-empty">沒有符合的商品。</td></tr>';
+  }
+  function renderAdminTheme(){
+    $('aThemes').innerHTML = Object.keys(THEMES).map(function(k){
+      var t=THEMES[k];
+      return '<button class="a-theme" data-theme="'+k+'" aria-pressed="'+(D.theme===k)+'"><span class="sw" style="background:'+t.bg+'"><i style="background:'+t.accent+'"></i></span><b>'+t.name+'</b><small>'+esc(t.hero.eyebrow)+'</small></button>';
+    }).join('');
+    ['eyebrow','title','em','sub','notice'].forEach(function(f){ var el=$('h-'+f); if(document.activeElement!==el) el.value=D.hero[f]; });
+  }
+  function renderAdminLayout(){
+    var o=D.layout.order;
+    $('aSecs').innerHTML = o.map(function(k,i){
+      return '<li class="a-sec"><label><input type="checkbox" data-sec-toggle="'+k+'"'+(D.layout.hidden[k]?'':' checked')+'> '+SECTIONS[k]+'</label>'+
+        '<span class="a-move"><button data-move="'+k+'|-1" aria-label="'+SECTIONS[k]+' 往上移"'+(i===0?' disabled':'')+'>↑</button><button data-move="'+k+'|1" aria-label="'+SECTIONS[k]+' 往下移"'+(i===o.length-1?' disabled':'')+'>↓</button></span></li>';
+    }).join('');
+    $('aZones').innerHTML = Object.keys(ZLABEL).map(function(z){
+      var n=D.products.filter(function(p){return p.zone===z;}).length;
+      return '<li class="a-sec"><label><input type="checkbox" data-zone-toggle="'+z+'"'+(D.layout.zones[z]?' checked':'')+'> '+ZLABEL[z]+'專區</label><span class="a-hint">'+n+' 件商品</span></li>';
+    }).join('');
+  }
+
+  $('admin').addEventListener('input', function(e){
+    var t=e.target;
+    if(t.id==='aSearch'){ pq=t.value.trim(); renderAdminProducts(); return; }
+    if(t.dataset.pid && (t.dataset.pf==='name' || t.dataset.pf==='price')){
+      var p=byId(t.dataset.pid); if(!p) return;
+      if(t.dataset.pf==='name'){ if(t.value.trim()) p.name=t.value.trim(); }
+      else { var v=t.value===''?null:Math.max(0,Math.round(Number(t.value))); p.price=(v===null||isNaN(v))?null:v; }
+      changed(); return;
     }
-    var fav = e.target.closest('.fav');
-    if (fav){ var fid = fav.getAttribute('data-fav'); var on = !favs[fid]; if (on) favs[fid] = true; else delete favs[fid]; fav.setAttribute('aria-pressed', on); toast(on?'已加入收藏：'+names[fid]:'已取消收藏'); return; }
-    if (e.target.closest('#cartBtn')){ openCart(); return; }
-    if (e.target.closest('#closeCart') || e.target.id==='scrim' || e.target.closest('#goShop')){ closeCart(); return; }
-    var inc=e.target.closest('[data-inc]'), dec=e.target.closest('[data-dec]'), rm=e.target.closest('[data-rm]');
-    if (inc||dec||rm){
+    if(t.dataset.hf){ D.hero[t.dataset.hf]=t.value; changed(); }
+  });
+  $('admin').addEventListener('change', function(e){
+    var t=e.target;
+    if(t.id==='aZoneFilter'){ pz=t.value; renderAdminProducts(); return; }
+    if(t.dataset.pid && t.dataset.pf && t.dataset.pf!=='name' && t.dataset.pf!=='price'){
+      var p=byId(t.dataset.pid); if(!p) return;
+      p[t.dataset.pf] = t.type==='checkbox' ? t.checked : t.value;
+      changed(); if(t.dataset.pf==='zone' && pz!=='all') renderAdminProducts(); return;
+    }
+    if(t.dataset.secToggle){ if(t.checked) delete D.layout.hidden[t.dataset.secToggle]; else D.layout.hidden[t.dataset.secToggle]=true; changed(); return; }
+    if(t.dataset.zoneToggle){ D.layout.zones[t.dataset.zoneToggle]=t.checked; changed(); return; }
+  });
+  $('aAdd').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name=$('addName').value.trim(), msg=$('addMsg');
+    if(!name){ msg.textContent='請輸入商品名稱。'; $('addName').focus(); return; }
+    var pv=$('addPrice').value===''?null:Math.max(0,Math.round(Number($('addPrice').value)));
+    var p={id:'p'+Date.now().toString(36),name:name.slice(0,60),zone:$('addZone').value,cat:$('addCat').value,price:(pv===null||isNaN(pv))?null:pv,isNew:$('addNew').checked,on:true};
+    D.products.unshift(p);
+    $('addName').value=''; $('addPrice').value='';
+    msg.textContent='已新增「'+p.name+'」到'+ZLABEL[p.zone]+'。按「儲存並發布」後公開。';
+    pq=''; $('aSearch').value=''; renderAdminProducts(); changed(); $('addName').focus();
+  });
+
+  async function fetchSource(){
+    var tries=['index.html','./'];
+    for(var i=0;i<tries.length;i++){
+      try{ var r=await fetch(tries[i],{cache:'no-store'}); if(r.ok){ var t=await r.text(); if(/^\s*<!doctype html/i.test(t) && t.indexOf('id="aura-state"')>=0) return t; } }catch(e){}
+    }
+    var st=document.head.querySelector('style');
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+(st?st.textContent:'')+'</style></head><body>'+PRISTINE_BODY+'</body></html>';
+  }
+  var saving=false;
+  async function save(){
+    if(saving) return;
+    if(!isDirty()){ setStatus('沒有需要儲存的變更'); return; }
+    saving=true; document.querySelectorAll('.a-save').forEach(function(b){b.disabled=true;});
+    setStatus('發布中…');
+    try{
+      if(mode==='local'){
+        localStorage.setItem('aura-store', JSON.stringify(D));
+        S=clone(D); setStatus('已儲存在這個瀏覽器。GitHub 版的變更只有這台電腦看得到。');
+      } else {
+        var src=await fetchSource();
+        var json=JSON.stringify(D).replace(/</g,'\\u003c');
+        var html=src.replace(/(<script type="application\/json" id="aura-state">)[\s\S]*?(<\/script>)/, function(_,a,b){return a+json+b;});
+        try{ sessionStorage.setItem('aura-admin-reopen', $('admin').hidden ? 'mini' : 'full'); }catch(e){}
+        await art.publish(html);
+        S=clone(D); setStatus('已發布，頁面會重新載入成最新版本。');
+      }
+    }catch(err){
+      try{ sessionStorage.removeItem('aura-admin-reopen'); }catch(e){}
+      var c=err && err.code;
+      var m = c==='conflict' ? '剛剛有人更新了網站，頁面會載入最新版本，請重新修改一次。'
+        : (c==='not_writer'||c==='not_granted') ? '你目前只有瀏覽權限，無法儲存變更。'
+        : c==='rate_limited' ? '儲存太頻繁了，請等一下再按儲存。'
+        : c==='too_large' ? '資料量太大，請刪減一些商品後再儲存。'
+        : c==='capability_disabled'||c==='consent_required' ? '這個畫面無法儲存。請在 Claude 裡開啟此頁並允許「發布新版本」後再試。'
+        : mode==='local' ? '瀏覽器拒絕儲存（可能是無痕模式），變更沒有保存。'
+        : '儲存失敗（'+(c||'未知錯誤')+'），請稍後再試。';
+      setStatus(m);
+    }
+    saving=false; document.querySelectorAll('.a-save').forEach(function(b){b.disabled=false;});
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    var chip=t.closest('[data-chip]'); if(chip){ filter=chip.getAttribute('data-chip'); renderNew(); return; }
+    var zc=t.closest('[data-zchip]'); if(zc){ var pp=zc.getAttribute('data-zchip').split('|'); zf[pp[0]]=pp[1]; renderZones(); return; }
+    var add=t.closest('[data-add]');
+    if(add){ var id=add.getAttribute('data-add'); cart[id]=(cart[id]||0)+1; renderNew(); renderZones(); renderCart(); toast('已加入購物車：'+byId(id).name+'（點右上角購物車查看）'); return; }
+    var fav=t.closest('[data-fav]');
+    if(fav){ var fid=fav.getAttribute('data-fav'); var on=!favs[fid]; if(on) favs[fid]=true; else delete favs[fid]; fav.setAttribute('aria-pressed',on); toast(on?'已加入收藏：'+byId(fid).name:'已取消收藏'); return; }
+    if(t.closest('#cartBtn')){ openCart(); return; }
+    if(t.closest('#closeCart') || t.id==='scrim' || t.closest('#goShop')){ closeCart(); return; }
+    var inc=t.closest('[data-inc]'), dec=t.closest('[data-dec]'), rm=t.closest('[data-rm]');
+    if(inc||dec||rm){
       var k=(inc||dec||rm).getAttribute(inc?'data-inc':dec?'data-dec':'data-rm');
       if(inc)cart[k]++; else if(dec)cart[k]--; else cart[k]=0;
-      if(cart[k]<=0){delete cart[k]; delete added[k];}
+      if(cart[k]<=0) delete cart[k];
       renderNew(); renderZones(); renderCart();
-      if(!Object.keys(cart).length) document.getElementById('closeCart').focus();
+      if(!Object.keys(cart).length) $('closeCart').focus();
       return;
     }
-    if (e.target.closest('#checkoutBtn')){ document.getElementById('dNote').textContent='這是預覽版，結帳頁會在正式網站開放。目前共 '+total()+' 件商品。'; return; }
-    var mb = e.target.closest('#menuBtn');
-    if (mb){ var nav = document.getElementById('mnav'); var open = !nav.classList.contains('open'); nav.classList.toggle('open', open); mb.setAttribute('aria-expanded', open); return; }
-    if (e.target.closest('#mnav a')){ document.getElementById('mnav').classList.remove('open'); document.getElementById('menuBtn').setAttribute('aria-expanded','false'); }
+    if(t.closest('#checkoutBtn')){ $('dNote').textContent='這是預覽版，結帳頁會在正式網站開放。目前共 '+cartTotal()+' 件商品。'; return; }
+    var mb=t.closest('#menuBtn');
+    if(mb){ var nav=$('mnav'); var open=!nav.classList.contains('open'); nav.classList.toggle('open',open); mb.setAttribute('aria-expanded',open); return; }
+    if(t.closest('#mnav a')){ $('mnav').classList.remove('open'); $('menuBtn').setAttribute('aria-expanded','false'); }
+    // admin
+    if(t.closest('#adminBtn') || t.closest('#aBack')){ openAdmin(); return; }
+    if(t.closest('#aClose')){ closeAdmin(); return; }
+    if(t.closest('#aPreview')){ previewSite(); return; }
+    if(t.closest('.a-save')){ save(); return; }
+    if(t.closest('#aDiscard')){ D=clone(S); renderStore(); renderAdmin(); setStatus('已放棄未儲存的變更'); route(); return; }
+    var tb=t.closest('.a-tabs [data-tab]'); if(tb){ tab=tb.getAttribute('data-tab'); renderAdmin(); return; }
+    var del=t.closest('[data-del]');
+    if(del){
+      if(del.dataset.armed!=='1'){ document.querySelectorAll('[data-del][data-armed="1"]').forEach(function(b){b.dataset.armed='';b.textContent='刪除';}); del.dataset.armed='1'; del.textContent='確定刪除？'; return; }
+      var did=del.getAttribute('data-del'), dp=byId(did);
+      D.products=D.products.filter(function(p){return p.id!==did;}); delete cart[did];
+      renderAdminProducts(); changed(); setStatus('已刪除「'+(dp?dp.name:'')+'」，按「儲存並發布」後生效。'); return;
+    }
+    var th=t.closest('[data-theme]');
+    if(th){ var key=th.getAttribute('data-theme'); D.theme=key; D.hero=clone(THEMES[key].hero); renderAdminTheme(); changed(); return; }
+    var mv=t.closest('[data-move]');
+    if(mv){ var a=mv.getAttribute('data-move').split('|'), o=D.layout.order, i=o.indexOf(a[0]), j=i+Number(a[1]); if(j>=0&&j<o.length){ o.splice(i,1); o.splice(j,0,a[0]); renderAdminLayout(); changed(); } return; }
   });
-  document.getElementById('joinForm').addEventListener('submit', function(e){
+  document.addEventListener('keydown', function(e){
+    if(e.key!=='Escape') return;
+    if(!$('drawer').hidden){ closeCart(); return; }
+    if(!$('admin').hidden){ closeAdmin(); }
+  });
+  $('joinForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var v = document.getElementById('email').value.trim();
-    var msg = document.getElementById('formMsg');
-    msg.textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '這是預覽版，訂閱功能會在正式網站開放。' : '請輸入有效的電子郵件，例如 you@example.com。';
+    var v=$('email').value.trim();
+    $('formMsg').textContent = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '這是預覽版，訂閱功能會在正式網站開放。' : '請輸入有效的電子郵件，例如 you@example.com。';
   });
-  renderNew(); renderZones(); renderCart(); route();
+  window.addEventListener('beforeunload', function(e){ if(!$('admin').hidden && isDirty() && !saving){ e.preventDefault(); e.returnValue=''; } });
+
+  $('addZone').innerHTML = opts(Object.keys(ZLABEL),'dark',ZLABEL);
+  $('addCat').innerHTML = opts(CATS_ALL,'上衣');
+  $('aZoneFilter').innerHTML = '<option value="all">全部專區</option>'+opts(Object.keys(ZLABEL),'',ZLABEL);
+  renderStore(); route();
+
+  function showAdminEntry(){}
+  if(mode==='local'){ showAdminEntry(); }
+  else {
+    Promise.all([window.claude.use('artifact'), window.claude.use('user')]).then(function(r){
+      art=r[0]; var u=r[1];
+      if(!art || !u) return false;
+      return u.canEdit().catch(function(){return false;});
+    }).then(function(can){
+      if(!can){ mode='readonly'; return; }
+      mode='artifact'; showAdminEntry();
+      var re=null; try{ re=sessionStorage.getItem('aura-admin-reopen'); sessionStorage.removeItem('aura-admin-reopen'); }catch(e){}
+      if(re==='full') { openAdmin(); setStatus('已發布，所有人看到的都是這個版本。'); }
+      else if(re==='mini') { previewSite(); setStatus('已發布，所有人看到的都是這個版本。'); }
+      else if(location.hash==='#admin') openAdmin();
+    }).catch(function(){ mode='readonly'; });
+  }
 })();
 </script>
 </body>
